@@ -46,9 +46,11 @@ Conditional rendering means showing or hiding specific elements based on a true/
   <div className="empty-state-box">Your stack is empty.</div>
 ) : (
   <div className="selected-items-list">
-  {/* List items render here */}
+    {/* List items render here */}
   </div>
 )}
+
+
 ### vii. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
 Parent to Child: The parent passes data downwards by setting custom attributes called props on the child component tag (e.g., <YourStack selectedStack={selectedStack} />).
 
