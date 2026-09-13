@@ -17,14 +17,6 @@ export default function TechGrid({ selectedStack, onAddStack }) {
       });
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex-1 py-16 text-center">
-        <p className="text-lg font-medium text-slate-500">Loading technologies...</p>
-      </div>
-    );
-  }
-
   const getBadgeStyle = (badge) => {
     switch (badge?.toLowerCase()) {
       case 'popular':
@@ -49,33 +41,34 @@ export default function TechGrid({ selectedStack, onAddStack }) {
     }
   };
 
-  const handleButtonClick = (tech, isSelected) => {
-    if (isSelected) {
-      alert(`${tech.name} is already in your stack!`);
-      return;
-    }
-    onAddStack(tech);
-  };
+  if (loading) {
+    return (
+      <div className="flex-1 py-20 text-center">
+        <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-pink-500"></div>
+        <p className="mt-4 text-sm font-medium text-slate-500">Loading technologies...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-1">
       <div className="text-left">
         <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-          Explore the <span className="text-pink-500">Technologies</span>
+          Explore the <span className="text-brand-gradient">Technologies</span>
         </h2>
         <p className="mt-2 text-sm text-slate-500 sm:text-base">
           Pick one technology per category to build your ideal stack.
         </p>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {technologies.map((tech) => {
           const isSelected = selectedStack.some((item) => item.id === tech.id);
 
           return (
             <div
               key={tech.id}
-              className="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all hover:shadow-md"
+              className="flex min-h-[320px] flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all hover:shadow-md"
             >
               <div>
                 <div className="flex items-center justify-between">
@@ -88,12 +81,14 @@ export default function TechGrid({ selectedStack, onAddStack }) {
                 </div>
 
                 <h3 className="mt-4 text-xl font-bold text-slate-900">{tech.name}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500 line-clamp-3">
+                <p className="mt-2 text-xs leading-relaxed text-slate-500">
                   {tech.description}
                 </p>
+              </div>
 
+              <div>
                 <div className="mt-6 flex items-center justify-between text-xs text-slate-500">
-                  <span className="rounded-md bg-slate-100 px-2.5 py-1 text-slate-600 font-medium">
+                  <span className="rounded-md bg-slate-100 px-2.5 py-1 font-medium text-slate-600">
                     {tech.category}
                   </span>
                   <span>{tech.difficulty}</span>
@@ -101,20 +96,20 @@ export default function TechGrid({ selectedStack, onAddStack }) {
                     <span className="text-amber-400">★</span> {tech.rating}
                   </span>
                 </div>
-              </div>
 
-              <button
-                type="button"
-                disabled={isSelected}
-                onClick={() => handleButtonClick(tech, isSelected)}
-                className={`mt-6 w-full rounded-xl py-3 text-xs font-semibold transition-colors ${
-                  isSelected
-                    ? 'cursor-not-allowed bg-emerald-500 text-white opacity-90'
-                    : 'bg-slate-950 text-white hover:bg-slate-800'
-                }`}
-              >
-                {isSelected ? '✓ Added to Stack' : 'Add to Stack'}
-              </button>
+                <button
+                  type="button"
+                  disabled={isSelected}
+                  onClick={() => onAddStack(tech)}
+                  className={`mt-4 w-full rounded-xl py-3 text-xs font-semibold transition-all ${
+                    isSelected
+                      ? 'cursor-not-allowed bg-emerald-500 text-white opacity-90'
+                      : 'bg-slate-950 text-white hover:bg-slate-800'
+                  }`}
+                >
+                  {isSelected ? '✓ Added to Stack' : 'Add to Stack'}
+                </button>
+              </div>
             </div>
           );
         })}
