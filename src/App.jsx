@@ -7,14 +7,13 @@ import YourStack from './components/YourStack';
 export default function App() {
   const [selectedStack, setSelectedStack] = useState([]);
 
-  const handleToggleStack = (tech) => {
-    setSelectedStack((prev) => {
-      const exists = prev.some((item) => item.id === tech.id);
-      if (exists) {
-        return prev.filter((item) => item.id !== tech.id);
-      }
-      return [...prev, tech];
-    });
+  const handleAddStack = (tech) => {
+    const exists = selectedStack.some((item) => item.id === tech.id);
+    if (exists) {
+      alert(`${tech.name} is already added!`);
+      return;
+    }
+    setSelectedStack((prev) => [...prev, tech]);
   };
 
   const handleRemoveItem = (id) => {
@@ -33,7 +32,7 @@ export default function App() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
           <TechGrid
             selectedStack={selectedStack}
-            onToggleStack={handleToggleStack}
+            onAddStack={handleAddStack}
           />
           <YourStack
             selectedStack={selectedStack}

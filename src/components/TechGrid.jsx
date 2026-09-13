@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function TechGrid({ selectedStack, onToggleStack }) {
+export default function TechGrid({ selectedStack, onAddStack }) {
   const [technologies, setTechnologies] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +47,14 @@ export default function TechGrid({ selectedStack, onToggleStack }) {
       default:
         return 'bg-slate-100 text-slate-600';
     }
+  };
+
+  const handleButtonClick = (tech, isSelected) => {
+    if (isSelected) {
+      alert(`${tech.name} is already in your stack!`);
+      return;
+    }
+    onAddStack(tech);
   };
 
   return (
@@ -97,14 +105,15 @@ export default function TechGrid({ selectedStack, onToggleStack }) {
 
               <button
                 type="button"
-                onClick={() => onToggleStack(tech)}
+                disabled={isSelected}
+                onClick={() => handleButtonClick(tech, isSelected)}
                 className={`mt-6 w-full rounded-xl py-3 text-xs font-semibold transition-colors ${
                   isSelected
-                    ? 'bg-rose-500 text-white hover:bg-rose-600'
+                    ? 'cursor-not-allowed bg-emerald-500 text-white opacity-90'
                     : 'bg-slate-950 text-white hover:bg-slate-800'
                 }`}
               >
-                {isSelected ? 'Remove from Stack' : 'Add to Stack'}
+                {isSelected ? '✓ Added to Stack' : 'Add to Stack'}
               </button>
             </div>
           );
@@ -113,3 +122,4 @@ export default function TechGrid({ selectedStack, onToggleStack }) {
     </div>
   );
 }
+
