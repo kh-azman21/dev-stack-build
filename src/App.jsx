@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TechGrid from './components/TechGrid';
@@ -11,18 +14,33 @@ export default function App() {
   const handleAddStack = (tech) => {
     const exists = selectedStack.some((item) => item.id === tech.id);
     if (exists) {
-      alert(`${tech.name} is already added!`);
+      toast.warning(`${tech.name} is already in your stack!`, {
+        position: 'top-right',
+        autoClose: 2500,
+      });
       return;
     }
     setSelectedStack((prev) => [...prev, tech]);
+    toast.success(`Added ${tech.name} to your stack!`, {
+      position: 'top-right',
+      autoClose: 2500,
+    });
   };
 
-  const handleRemoveItem = (id) => {
-    setSelectedStack((prev) => prev.filter((item) => item.id !== id));
+  const handleRemoveItem = (tech) => {
+    setSelectedStack((prev) => prev.filter((item) => item.id !== tech.id));
+    toast.info(`Removed ${tech.name} from your stack.`, {
+      position: 'top-right',
+      autoClose: 2500,
+    });
   };
 
   const handleRemoveAll = () => {
     setSelectedStack([]);
+    toast.error('Cleared all items from your stack.', {
+      position: 'top-right',
+      autoClose: 2500,
+    });
   };
 
   return (
@@ -45,8 +63,10 @@ export default function App() {
         </main>
       </div>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
+
 
 

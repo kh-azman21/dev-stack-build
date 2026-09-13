@@ -3,7 +3,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-white py-16 lg:py-24">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-12 px-6 lg:flex-row">
         
-        {/* Left Column: Heading, Description, CTAs */}
+        
         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
             Build Your Ideal <br />
@@ -32,7 +32,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right Column: Hero Illustration */}
+        
         <div className="flex-1">
           <div className="relative mx-auto max-w-lg lg:max-w-none">
             <img

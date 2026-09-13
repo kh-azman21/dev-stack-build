@@ -7,7 +7,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-md font-sans">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         
-        {/* Mobile Left: Hamburger Button (Hidden on Desktop) */}
+        
         <div className="flex items-center lg:hidden">
           <button
             type="button"
@@ -30,14 +30,14 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Center Logo on Mobile / Left Logo on Desktop */}
+        
         <div className="flex items-center justify-center lg:justify-start">
           <a href="#" className="flex items-center gap-2">
             <img src="/logo-text.png" alt="DevStack" className="h-7 sm:h-8 object-contain" />
           </a>
         </div>
 
-        {/* Desktop Navigation Links (Hidden on Mobile) */}
+        
         <ul className="hidden lg:flex lg:items-center lg:gap-8 text-sm font-medium text-slate-600">
           <li><a href="#" className="text-pink-500 font-semibold">Home</a></li>
           <li><a href="#technologies" className="hover:text-slate-900 transition-colors">Technologies</a></li>
@@ -46,7 +46,7 @@ export default function Navbar() {
           <li><a href="#contact" className="hover:text-slate-900 transition-colors">Contact</a></li>
         </ul>
 
-        {/* Right Action Buttons (Visible on Mobile and Desktop) */}
+        
         <div className="flex items-center gap-2 sm:gap-3">
           <a
             href="#signin"
@@ -63,7 +63,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Expanded Mobile Menu Drawer */}
+    
       {isMobileMenuOpen && (
         <div className="border-t border-slate-100 bg-white px-6 py-4 lg:hidden">
           <ul className="flex flex-col gap-3 text-sm font-medium text-slate-600">

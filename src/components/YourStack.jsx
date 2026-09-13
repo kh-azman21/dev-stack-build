@@ -8,13 +8,11 @@ export default function YourStack({ selectedStack, onRemoveItem, onRemoveAll }) 
         {count > 0 ? `${count} Technology Selected` : 'No technologies selected yet.'}
       </p>
 
-      {/* Empty State */}
       {count === 0 ? (
         <div className="mt-6 flex h-32 items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-white">
           <p className="text-xs text-slate-400">Your stack is empty.</p>
         </div>
       ) : (
-        /* Selected Items List */
         <div className="mt-6 space-y-3">
           {selectedStack.map((tech) => (
             <div
@@ -35,10 +33,9 @@ export default function YourStack({ selectedStack, onRemoveItem, onRemoveAll }) 
                 </div>
               </div>
 
-              {/* Single Item Remove Button */}
               <button
                 type="button"
-                onClick={() => onRemoveItem(tech.id)}
+                onClick={() => onRemoveItem(tech)}
                 className="flex h-6 w-6 items-center justify-center text-slate-400 transition-colors hover:text-slate-600"
                 aria-label={`Remove ${tech.name}`}
               >
@@ -47,7 +44,6 @@ export default function YourStack({ selectedStack, onRemoveItem, onRemoveAll }) 
             </div>
           ))}
 
-          {/* Remove All Button */}
           <button
             type="button"
             onClick={onRemoveAll}
@@ -60,3 +56,4 @@ export default function YourStack({ selectedStack, onRemoveItem, onRemoveAll }) 
     </div>
   );
 }
+
